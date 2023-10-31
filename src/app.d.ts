@@ -7,6 +7,18 @@ declare global {
 		// interface PageData {}
 		// interface Platform {}
 	}
+
+	type AllowedOPs =
+		| 'add'
+		| 'sub'
+		| 'mult'
+		| 'addi'
+		| 'subi'
+		| 'div'
+		| 'lw'
+		| 'sw'
+		| 'mfhi'
+		| 'mflo'
 	interface RInstruction {
 		op: 'add' | 'sub' | 'mult'
 		rd: string

@@ -1,8 +1,14 @@
 <script lang="ts">
 	import { enhance } from '$app/forms'
+	import { instructions } from '$lib'
 	import type { ActionData } from './$types'
 
+	import Toolbar from '$lib/Toolbar.svelte'
+	import Pipeline from '$lib/Pipeline.svelte'
+
 	export let form: ActionData
+
+	let pipelineT: any
 
 	$: if (form?.ok) {
 		setTimeout(() => {
@@ -11,6 +17,8 @@
 				el.scrollIntoView({ behavior: 'smooth' })
 			}
 		}, 0)
+		instructions.set(form.instructionSet)
+		pipelineT = form.pipeline
 	}
 </script>
 
@@ -52,9 +60,18 @@
 </form>
 
 {#if form?.ok}
-	<div id="aqui" class="mt-4 h-[calc(100vh-2rem)] w-full bg-red-600 text-white">
-		{#each form?.instructionSet as inst}
-			<p class="p-2">{JSON.stringify(inst, null, 4)}</p>
-		{/each}
+	<div
+		id="aqui"
+		class="mt-4 grid h-[calc(100vh-2rem)] overflow-scroll outline outline-black"
+	>
+		<Toolbar maxClockCycle={form?.maxClock} />
+		<div class="space-y-3 p-2">
+			{#each pipelineT as item}
+				<Pipeline
+					offset={item.offset}
+					bubble={item.bubble}
+				/>
+			{/each}
+		</div>
 	</div>
 {/if}

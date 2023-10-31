@@ -1,9 +1,28 @@
 <!doctype html>
 <html lang="en">
+	<script>
+		eval(`function teste() {
+			document.getElementById('inst').value = 
+			'lw $1, 0($9)\\n' +
+			'lw $2, 4($9)\\n' +
+			'add $3, $1, $2\\n' +
+			'sw $3, 8($9)\\n' +
+			'addi $8, $0, 10\\n' +
+			'addi $8, $0, 10\\n' +
+			'addi $8, $0, 10\\n' +
+			'addi $8, $0, 10\\n'
+		}`)
+	</script>
 	<head>
 		<meta charset="utf-8" />
-		<link rel="icon" href="%sveltekit.assets%/favicon.png" />
-		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<link
+			rel="icon"
+			href="%sveltekit.assets%/favicon.png"
+		/>
+		<meta
+			name="viewport"
+			content="width=device-width, initial-scale=1"
+		/>
 		%sveltekit.head%
 	</head>
 	<body data-sveltekit-preload-data="hover">

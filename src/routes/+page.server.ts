@@ -1,5 +1,7 @@
 import type { Actions } from './$types'
-import { instructions, createRI, createII, createDI, createLSI, createMFI } from '$lib'
+import { createRI, createII, createDI, createLSI, createMFI } from '$lib'
+import { isAllowedOP } from '$lib'
+import { checkForConflicts } from '$lib'
 
 export const actions = {
 	default: async ({ request }) => {
@@ -14,6 +16,8 @@ export const actions = {
 			const [op, rest] = inst.split(' ')
 			let rd: string, rs: string, rt: string, imm: string
 
+			if (!isAllowedOP(op)) throw new Error('Invalid OP code')
+
 			switch (op) {
 				case 'add':
 				case 'sub':
@@ -24,7 +28,7 @@ export const actions = {
 				case 'addi':
 				case 'subi':
 					;[rt, rs, imm] = rest.split(',')
-					instructionSet.push(createII(op, rt, rs, Number(imm)))
+					instructionSet.push(createII(op, rt, rs, parseInt(imm)))
 					break
 				case 'div':
 					;[rs, rt] = rest.split(',')
@@ -32,12 +36,11 @@ export const actions = {
 					break
 				case 'lw':
 				case 'sw':
-					// LW $t0, 0($t1)
 					let temp: string
 					;[rt, temp] = rest.split(',')
 					;[imm, rs] = temp.split('(')
 					rs = rs.replace(')', '')
-					instructionSet.push(createLSI(op, rt, Number(imm), rs))
+					instructionSet.push(createLSI(op, rt, parseInt(imm), rs))
 					break
 				case 'mfhi':
 				case 'mflo':
@@ -46,9 +49,21 @@ export const actions = {
 					break
 			}
 		})
+
+		const pipeline = checkForConflicts(instructionSet)
+
+		console.log(pipeline[pipeline.length - 1])
+
+		const maxClock =
+			5 +
+			pipeline[pipeline.length - 1].offset +
+			(pipeline[pipeline.length - 1].bubble > 0 ? 1 : 0)
+
 		return {
 			ok: true,
-			instructionSet
+			instructionSet,
+			pipeline,
+			maxClock
 		}
 	}
 } satisfies Actions
