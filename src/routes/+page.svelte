@@ -23,7 +23,7 @@
 </script>
 
 <form
-	class="mx-auto grid max-w-4xl grid-cols-3 place-items-center gap-4 p-3 text-lg shadow-md"
+	class="mx-auto flex max-w-4xl items-center justify-around p-3 text-lg shadow-md"
 	method="POST"
 	use:enhance={() => {
 		return async ({ update }) => {
@@ -41,21 +41,20 @@
 			class="resize-none rounded-md border border-gray-300 p-2"
 		></textarea>
 	</div>
-	<div class="place-self-center">
-		<p>Como usar:</p>
-		<ul class="list-disc text-base">
-			<li>
-				Siga o padrão MIPS assembly language <a
-					href="https://student.cs.uwaterloo.ca/~cs241/mips/mipsasm.html"
-					class="text-cyan-600 underline">descrito aqui</a
-				>;
-			</li>
-			<li>Separe instruções com uma nova linha;</li>
-			<li>Instruções suportadas são: LW, SW, ADD, SUB, AND, MUL, DIV</li>
+	<div>
+		<p>Instruções suportadas:</p>
+		<ul class="list-disc pl-4 text-base">
+			<li>LW, SW: op $t, offset($s);</li>
+			<li>ADD, SUB, MULT: op $d, $s, $t;</li>
+			<li>ADDI, SUBI: op $d, $s, imm;</li>
+			<li>DIV: div $s, $t;</li>
+			<li>MFHI, MFLO: op $d.</li>
 		</ul>
+		<p><code>$d, $t, $s</code> são registradores.</p>
+		<p><code>offset</code> e <code>imm</code> são valores inteiros.</p>
 	</div>
 	<div>
-		<button class="bg-cyan-900 px-4 py-2 text-white">Submit</button>
+		<button class="bg-cyan-900 px-4 py-2 text-white">Simular</button>
 	</div>
 </form>
 
