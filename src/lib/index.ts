@@ -94,7 +94,6 @@ export const checkForConflicts = (instructions: Instruction[]) => {
 	let comp = 0
 	let result = []
 	for (let i = 0; i < instructions.length; i++) {
-		if (!instructions[i + 1]) break
 		if (isLSInstruction(instructions[i])) {
 			const atual = instructions[i] as LSInstruction
 			if (isRInstruction(instructions[i + 1])) {
