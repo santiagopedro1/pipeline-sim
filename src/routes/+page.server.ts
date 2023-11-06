@@ -52,8 +52,6 @@ export const actions = {
 
 		const pipeline = checkForConflicts(instructionSet)
 
-		console.log(pipeline[pipeline.length - 1])
-
 		const maxClock =
 			5 +
 			pipeline[pipeline.length - 1].offset +
