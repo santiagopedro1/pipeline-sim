@@ -14,6 +14,7 @@ declare global {
 		| 'mult'
 		| 'addi'
 		| 'subi'
+		| 'multi'
 		| 'div'
 		| 'lw'
 		| 'sw'
@@ -26,7 +27,7 @@ declare global {
 		rt: string
 	}
 	interface IInstruction {
-		op: 'addi' | 'subi'
+		op: 'addi' | 'subi' | 'multi'
 		rt: string
 		rs: string
 		imm: number

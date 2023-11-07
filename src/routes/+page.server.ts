@@ -7,7 +7,15 @@ export const actions = {
 	default: async ({ request }) => {
 		let instString = (await request.formData()).get('inst') as string
 		instString = instString.toLowerCase()
+
+		// Remover todos os espaços
 		instString = instString.replace(/, /g, ',')
+
+		// Remover quebras de linha duplicadas
+		instString = instString.replace(/\r\n\r\n/g, '\r\n')
+
+		// Remover quebras de linha no final
+		instString = instString.replace(/\r\n$/g, '')
 
 		const instructionSet: Instruction[] = []
 
@@ -16,7 +24,7 @@ export const actions = {
 			const [op, rest] = inst.split(' ')
 			let rd: string, rs: string, rt: string, imm: string
 
-			if (!isAllowedOP(op)) throw new Error('Invalid OP code')
+			if (!isAllowedOP(op)) throw new Error('OP inválido')
 
 			switch (op) {
 				case 'add':
@@ -27,6 +35,7 @@ export const actions = {
 					break
 				case 'addi':
 				case 'subi':
+				case 'multi':
 					;[rt, rs, imm] = rest.split(',')
 					instructionSet.push(createII(op, rt, rs, parseInt(imm)))
 					break

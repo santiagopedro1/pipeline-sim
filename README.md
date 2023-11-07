@@ -11,8 +11,6 @@ Acesse o [site](https://pipeline-sim.vercel.app/) ou siga as instruções para e
 1. Instale [nodejs](https://nodejs.org/) e [pnpm](https://pnpm.js.org/)
 
 2. ```bash
-    git clone https://github.com/santiagopedro1/pipeline-sim.git
-    cd pipeline-sim
     pnpm install
     pnpm dev
    ```

@@ -41,9 +41,7 @@
 	}
 </script>
 
-<div
-	class="sticky inset-0 flex h-12 w-[calc(100vw-2rem)] items-center justify-center gap-6 bg-white p-2"
->
+<div class="sticky inset-0 z-10 flex h-12 w-full items-center justify-center gap-6 bg-white p-2">
 	<div>
 		<button
 			class="rounded-full bg-gray-200 p-2 hover:bg-gray-300"
