@@ -1,5 +1,7 @@
 # Simulador de pipeline
 
+Integrantes: Pedro Santiago e Antonni Moraes
+
 Simulador de pipeline, construido para a disciplina de Arquitetura e Organização de Computadores II.
 
 O simulador é baseado num pipeline de 5 estágios, com sintaxe de assembly semelhante ao MIPS.
