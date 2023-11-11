@@ -43,14 +43,15 @@
 	<div>
 		<p>Instruções suportadas:</p>
 		<ul class="list-disc pl-4 text-base">
-			<li>LW, SW: op $t, offset($s);</li>
-			<li>ADD, SUB, MULT: op $d, $s, $t;</li>
-			<li>ADDI, SUBI, MULTI: op $d, $s, imm;</li>
-			<li>DIV: div $s, $t;</li>
-			<li>MFHI, MFLO: op $d.</li>
+			<li>LW, SW: op $t, offset($s)</li>
+			<li>ADD, SUB, MULT: op $d, $s, $t</li>
+			<li>ADDI, SUBI, MULTI: op $d, $s, imm</li>
+			<li>DIV: div $s, $t</li>
+			<li>MFHI, MFLO: op $d</li>
 		</ul>
 		<p><code>$d, $t, $s</code> são registradores.</p>
 		<p><code>offset</code> e <code>imm</code> são valores inteiros.</p>
+		<p>Instruções são separadas por nova linha</p>
 	</div>
 	<div>
 		<button class="bg-cyan-900 px-4 py-2 text-white">Simular</button>
